@@ -4,6 +4,7 @@ GEM
     rack (1.5.2)
     rack-protection (1.5.2)
       rack
+    sass (3.2.13)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -14,4 +15,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  sass
   sinatra
