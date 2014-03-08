@@ -1,0 +1,28 @@
+!!!
+html
+  head
+    meta(charset='utf8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
+    meta(name='sass2stylus', content='Easily convert sass to stylus')
+    meta(name='MojoTech', content= "Made with love by MojoTech")
+
+    title= title
+
+    link(rel='stylesheet', href='css/bootstrap.min.css')
+    link(rel='stylesheet', href='css/master.css')
+    link(rel='stylesheet', href='css/codemirror.css')
+    link(rel='stylesheet', href='css/neat.css')
+
+  body
+    != content
+    include _footer
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
+    script(src="js/bootstrap.min.js")
+    script(src="js/codemirror.js")
+    script(src="js/css.js")
+    script(src="js/main.js")
+    script(src="js/placeholder.js")
+    script(src="js/sass.js")
+    script(src="js/scrollIt.js")
+    script(src="js/ZeroClipboard.min.js")

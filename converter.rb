@@ -121,4 +121,6 @@ def main
   puts stylus
 end
 
-main()
+if (!ARGV[0].nil?)
+  main()
+end
