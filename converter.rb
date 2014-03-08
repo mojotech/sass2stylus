@@ -1,13 +1,25 @@
+#!/usr/bin/env ruby
+# Convert SASS/SCSS to Stylus
+# Initial work by Andrey Popp (https://github.com/andreypopp)
+
 require 'sass'
 
 class ToStylus < Sass::Tree::Visitors::Base
 
   def visit(node)
-    method = "visit_#{node_name node}"
+    if self.respond_to?(:node_name)
+      method = "visit_#{node_name node}"
+    else
+      method = "visit_#{node.class.node_name}"
+    end
     if self.respond_to?(method, true)
       self.send(method, node) {visit_children(node)}
     else
-      raise "unhandled node: '#{node_name node}'"
+      if self.respond_to?(:node_name)
+        raise "unhandled node: '#{node_name node}'"
+      else
+        raise "unhandled node: '#{node.class.node_name}'"
+      end
     end
   end
 
@@ -61,6 +73,11 @@ class ToStylus < Sass::Tree::Visitors::Base
     emit "$#{node.name} = #{node.expr.to_sass}"
   end
 
+  def visit_mixindef(node)
+    emit "#{node.name}(#{render_args(node.args)})"
+    visit_children node
+  end
+
   def visit_media(node)
     emit "@media #{node.query.map{|i| i.is_a?(Sass::Script::Variable) ? i.inspect : i}.join}"
     visit_children node
@@ -68,11 +85,6 @@ class ToStylus < Sass::Tree::Visitors::Base
 
   def visit_content(node)
     emit '{block}'
-  end
-
-  def visit_mixindef(node)
-    emit "#{node.name}(#{render_args(node.args)})"
-    visit_children node
   end
 
   def visit_mixin(node)
@@ -100,3 +112,13 @@ class ToStylus < Sass::Tree::Visitors::Base
     @lines.join("\n")
   end
 end
+
+def main
+  options = Sass::Engine::DEFAULT_OPTIONS
+  engine = Sass::Engine.for_file(ARGV[0], options)
+  tree = engine.to_tree
+  stylus = ToStylus.visit(tree)
+  puts stylus
+end
+
+main()
