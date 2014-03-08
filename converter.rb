@@ -1,13 +1,17 @@
+#!/usr/bin/env ruby
+# Convert SASS/SCSS to Stylus
+# Initial work by Andrey Popp (https://github.com/andreypopp)
+
 require 'sass'
 
 class ToStylus < Sass::Tree::Visitors::Base
 
   def visit(node)
-    method = "visit_#{node_name node}"
+    method = "visit_#{node.class.node_name}"
     if self.respond_to?(method, true)
       self.send(method, node) {visit_children(node)}
     else
-      raise "unhandled node: '#{node_name node}'"
+      raise "unhandled node: '#{node.class.node_name}'"
     end
   end
 
