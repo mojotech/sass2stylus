@@ -7,8 +7,8 @@ require 'sass'
 class ToStylus < Sass::Tree::Visitors::Base
 
   def self.convert(file)
-    options = Sass::Engine::DEFAULT_OPTIONS
-    engine = Sass::Engine.for_file(file, options)
+    engine = Sass::Engine.for_file(file, {})
+
     tree = engine.to_tree
     visit(tree)
   end
