@@ -6,7 +6,7 @@ var exec = require('child_process').exec,
     filename = cliArg[2],
     rawFilename = filename.replace(/.scss|.sass/, ''),
     sassFile = filename.replace('.scss', '.sass'),
-    converter = __dirname +'/converter.rb',
+    converter = __dirname +'/node_converter.rb',
     s2s = function() {
       exec('ruby '+ converter +' '+ sassFile, function(error, stdout, stderr) {
         console.log('Converting Sass to Stylus');
@@ -14,7 +14,7 @@ var exec = require('child_process').exec,
         if(error !== null) {
           console.log(error);
         }
-        if(filename.match(/.scss/)) {
+        if(sassFile.match(/.tmp/).length) {
           fs.unlinkSync(sassFile);
         }
       });
@@ -22,6 +22,7 @@ var exec = require('child_process').exec,
 
 if(filename.match(/.scss/)) {
   // Convert SCSS to Sass
+  sassFile = sassFile.replace('.sass', '.tmp.sass');
   exec('sass-convert '+ filename +' '+ sassFile, function(error, stdout, stderr) {
     s2s();
     if(error !== null) {
