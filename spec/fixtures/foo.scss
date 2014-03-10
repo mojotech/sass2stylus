@@ -1,0 +1,6 @@
+@mixin foo() {
+    background: red;
+}
+.bar {
+    @include foo();
+}
