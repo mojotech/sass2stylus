@@ -1,5 +1,5 @@
 $:.unshift(File.join(File.dirname(__FILE__), '..'))
-require 'ruby_converter'
+require 'to_stylus'
 
 describe ToStylus  do
   before do
