@@ -14,7 +14,7 @@ var exec = require('child_process').exec,
         if(error !== null) {
           console.log(error);
         }
-        if(sassFile.match(/.tmp/).length) {
+        if(sassFile.match(/.tmp/) && sassFile.match(/.tmp/).length) {
           fs.unlinkSync(sassFile);
         }
       });
