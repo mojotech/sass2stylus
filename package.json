@@ -1,0 +1,59 @@
+{
+  "name": "sass2stylus",
+  "description": "Convert Sass (and SCSS) to Stylus",
+  "version": "0.0.8",
+  "bin": "./bin/index.js",
+  "main": "./lib/sass2stylus.js",
+  "keywords": [
+    "scss",
+    "sass",
+    "stylus",
+    "convert"
+  ],
+  "maintainers": [
+    {
+      "name": "Jake Buob",
+      "email": "jake@mojotech.com",
+      "web": "http://mojotech.com"
+    },
+    {
+      "name": "Cory Simmons",
+      "email": "cory@mojotech.com",
+      "web": "http://mojotech.com"
+    },
+    {
+      "name": "Sam Saccone",
+      "email": "sam@mojotech.com",
+      "web": "http://mojotech.com"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Andrey Popp",
+      "email": "8mayday@gmail.com",
+      "web": "http://andreypopp.com"
+    }
+  ],
+  "dependencies": {
+    "temp-write": "0.2.0",
+    "commander": "2.1.0",
+    "cli-color": "0.2.3"
+  },
+  "bugs": {
+    "url": "https://github.com/mojotech/sass2stylus/issues?state=open"
+  },
+  "repository": [
+    {
+      "type": "git",
+      "url": "git@github.com:mojotech/sass2stylus.git"
+    }
+  ],
+  "licenses": "MIT",
+  "homepage": "http://sass2stylus.com",
+  "devDependencies": {
+    "stylus": "^0.42.3",
+    "should": "^3.1.3",
+    "mocha": "^1.18.0",
+    "node-sass": "^0.8.3"
+  }
+}

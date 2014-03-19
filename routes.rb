@@ -1,7 +1,7 @@
 require 'sinatra'
 
 post '/' do
-  load 'converter.rb'
+  load 'lib/ruby_converter.rb'
   options = Sass::Engine::DEFAULT_OPTIONS.merge({syntax: :scss})
   engine = Sass::Engine.for_file(params[:file][:tempfile], options)
   tree = engine.to_tree
