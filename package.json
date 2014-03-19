@@ -1,0 +1,22 @@
+{
+  "name": "sass2stylus",
+  "author": "Jake Buob, Cory Simmons / MojoTech, Andrey Popp",
+  "main": "sass2stylus.js",
+  "version": "0.0.5",
+  "description": "Convert Sass (and SCSS) to Stylus",
+  "keywords": [
+    "sass",
+    "scss",
+    "stylus",
+    "convert"
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/mojotech/sass2stylus.git"
+    }
+  ],
+  "github": "https://github.com/mojotech/sass2stylus",
+  "preferGlobal": true,
+  "bin": "./sass2stylus.js"
+}
