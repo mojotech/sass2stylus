@@ -42,6 +42,7 @@ node_modules
 /_yardoc/
 /doc/
 /rdoc/
+/public/*
 
 ## Environment normalisation:
 /.bundle/
@@ -55,4 +56,6 @@ node_modules
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+
+.DS_Store
 
