@@ -5,7 +5,7 @@ get '/' do
 end
 
 post '/ajax' do
-  load 'converter.rb'
+  load '../to_stylus.rb'
   options = Sass::Engine::DEFAULT_OPTIONS.merge({syntax: :scss})
   engine = Sass::Engine.new( params[:sass_textarea], options )
   begin
