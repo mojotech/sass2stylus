@@ -20,6 +20,7 @@
 - `roots compile`
 - `ruby app.rb`
 
-### Made with love by the team at...
-<a href="http://mojotech.com"><img width="160px" src="http://mojotech.github.io/sass2stylus/img/mojotech-logo.svg" title="MojoTech's Hiring"></a>
+---
 
+##### Sass2Stylus is curated by loving hands at...
+<a href="http://mojotech.com"><img width="140px" src="https://mojotech.github.io/sass2stylus/img/mojotech-logo.svg" title="MojoTech's Hiring"></a> <sup>(psst, [we're hiring](http://www.mojotech.com/jobs))</sup>
