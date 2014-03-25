@@ -105,6 +105,10 @@ class ToStylus < Sass::Tree::Visitors::Base
     emit "#{node.name.join(' ')}: #{node.value.to_sass}"
   end
 
+  def visit_extend(node)
+    emit "#{node.to_sass}".chomp!
+  end
+
   def visit_function(node)
     emit "#{node.name}(#{render_args(node.args)})"
     visit_children node

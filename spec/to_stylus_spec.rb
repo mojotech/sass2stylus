@@ -13,4 +13,13 @@ describe ToStylus  do
   it "converts a scss file to styl" do
     ToStylus.convert("#{@path}/fixtures/foo.scss").should eq(File.read("#{@path}/fixtures/foo.styl").chomp)
   end
+
+  it "handles scss extends" do
+    ToStylus.convert("#{@path}/fixtures/extend.scss").should eq(File.read("#{@path}/fixtures/extend.styl").chomp)
+  end
+
+  it "handles sass extends" do
+    ToStylus.convert("#{@path}/fixtures/extend.sass").should eq(File.read("#{@path}/fixtures/extend.styl").chomp)
+  end
+
 end
