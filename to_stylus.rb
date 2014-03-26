@@ -4,7 +4,6 @@
 
 require 'rubygems'
 require 'bundler/setup'
-
 require 'sass'
 
 class ToStylus < Sass::Tree::Visitors::Base
@@ -102,6 +101,22 @@ class ToStylus < Sass::Tree::Visitors::Base
 
   def visit_prop(node)
     emit "#{node.name.join(' ')}: #{node.value.to_sass}"
+  end
+
+  def visit_import(node)
+    emit "@import '#{node.imported_filename}'"
+  end
+
+  def visit_cssimport(node)
+    if node.to_sass.include?("http://") && !node.to_sass.include?("url")
+      emit "@import url(#{node.uri})"
+    elsif(node.to_sass.index("\"http") || node.to_sass.index("\'http"))
+      emit "#{node.to_sass}".chomp!
+    elsif(node.to_sass.index("http"))
+      emit "@import #{node.uri}".gsub("(", "(\"").gsub(")", "\")")
+    else
+      emit "#{node.to_sass}".chomp!
+    end
   end
 
   def visit_extend(node)

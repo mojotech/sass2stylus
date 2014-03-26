@@ -30,4 +30,13 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/media_queries.sass").should eq(File.read("#{@path}/fixtures/media_queries.styl").chomp)
   end
 
+  it "handles scss import" do
+    ToStylus.convert("#{@path}/fixtures/import.scss").should eq(File.read("#{@path}/fixtures/import.styl").chomp)
+  end
+
+  it "handles sass import" do
+    ToStylus.convert("#{@path}/fixtures/import.sass").should eq(File.read("#{@path}/fixtures/import.styl").chomp)
+  end
+
+
 end
