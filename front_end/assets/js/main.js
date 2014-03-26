@@ -52,21 +52,16 @@ $(document).ready(function () {
   var sass_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_sass"), {
     lineNumbers: true,
     matchBrackets: true,
-    placeholder: "Paste your sass code \nor drag a file here to convert.",
-    theme: "neat",
     mode: "text/x-scss"
   });
 
   var stylus_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_stylus"),{
-    lineNumbers: true,
-    placeholder: "Copy the converted code here \nor download the .styl file above.",
+    lineNumbers: true
   });
 
   copy_btn.on("dataRequested", function (client, args) {
     client.setText( stylus_editor.getValue() );
   });
-
-  $.scrollIt();
 
   var fileSelector = document.getElementById('file_selector');
 
@@ -88,7 +83,6 @@ $(document).ready(function () {
   });
 
   $("#download_btn").click(function () {
-    console.log('download');
     stylus_editor.save();
     document.getElementById("download_form").submit()
   });
