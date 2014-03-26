@@ -11,8 +11,9 @@ html
     link(rel='stylesheet', href='css/master.css')
 
   body
-    != content
-    include _footer
+    #content
+        != content
+        include _footer
 
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js')
     script(src="js/codemirror.js")
