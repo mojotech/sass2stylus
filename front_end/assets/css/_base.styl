@@ -1,44 +1,43 @@
-default-color = dark-blue
-
-hilight-color = blue
-
-vendors = webkit moz o ms official
-
-img-path = ''
-
-pie-enabled = true
-pie-path = '/pie.htc'
-
+*
+  box-sizing border-box
+html, body
+  height 100%
 html
   &.no_flash .flash_btn
     display none
-
 html
   &.no_flash .no_flash
     border-top-right-radius 6px
     border-bottom-right-radius 6px
-
-body, div, header, footer, h1, h2, p, ul, ol, li, code, a, span
+body
   margin 0
   padding 0
   font-family source-sans
+  font-weight normal
+h1, h2, h3, .btn
+  font-family source-sans-bold
+  font-weight normal
+h3
+  margin 0 0 10px 0
+a
+  color blue
+  &:hover
+    color lighten(blue, 20%)
 
-h1
-  font-size xl-font
-  font-family source-sans-bold
-h2
-  font-size large-font
-  font-family source-sans-bold
 p
-  font-size med-font
+  margin 0
 code
   display block
   background light-blue
-  border-radius 6px
   padding med-padding-block
   min-height 350px
+
 strong
   font-family source-sans-bold
+
+.contain
+  width 60%
+  margin 0 auto
 
 .inline-link
   border-bottom 1px dotted blue
@@ -51,53 +50,61 @@ strong
     border-bottom 1px dotted darken(blue, 50%)
 .btn
   color white
-  font-family source-sans-bold
-  font-size small-font
+  font-size 16px
   text-decoration none
   text-transform uppercase
   background green
-  border-radius 6px
   padding (small-padding-block - 7) small-padding-block
-  transition background 50ms linear
   outline: none
   border: none
+  margin 0
   &:hover
     color white
     text-decoration none
-    background lighten(green, 20%)
+    background-color lighten(green, 10%)
+    cursor pointer
   &:active
-    position relative
-    bottom -2px
+    background-color darken(green, 20%)
+  &.btn-stretch-row
+    width 50%
+    float left
+    padding 14.5px 0
 .inactive
   background grey
-  &:hover
-    background lighten(grey, 20%)
 
-.pill
-  code
-    padding (small-padding-block / 2) small-padding-block
-    padding-bottom (small-padding-block / 2) - 1
-    min-height 0
-    white-space nowrap
-    overflow scroll
-    border-top-right-radius 0
-    border-bottom-right-radius 0
-  .btn
-    border-top-left-radius 0
-    border-bottom-left-radius 0
-    padding (small-padding-block - 5) small-padding-block
-.white
-  color white
-.text-center
-  text-align center
-.pull-right
-  float right
-.pull-left
-  float left
-.cf
-  clear both
 .zeroclipboard-is-hover
   background-color #97d978
 .zeroclipboard-is-active
   position relative
   top 2px
+
+.col-header
+  display inline-block
+  width 50%
+  background-color dark-blue
+  margin 0
+  padding small-padding-block 0 small-padding-block (med-padding-block + 14)
+  color white
+
+.clear
+  clear both
+
+form
+  height 100%
+
+.col-half
+  width 50%
+  float left
+  &.converter-col
+    min-height 100%
+    position relative
+
+.inner-padding
+  height 100%
+
+.action-buttons
+  display inline-block
+  position absolute
+  top 0
+  right 0
+  width: 50%

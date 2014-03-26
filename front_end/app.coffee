@@ -15,7 +15,7 @@ layouts:
 # Locals will be made available on every page. They can be
 # variables or (coffeescript) functions.
 locals:
-  title: 'sass2stylus - Easily convert sass to stylus'
+  title: 'SASS to STYLUS - Convert your SASS to STYLUS'
 
 # Precompiled template path, see http://roots.cx/docs/#precompile
 # templates: 'views/templates'
