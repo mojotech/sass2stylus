@@ -22,4 +22,12 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/extend.sass").should eq(File.read("#{@path}/fixtures/extend.styl").chomp)
   end
 
+  it "handles scss media queries" do
+    ToStylus.convert("#{@path}/fixtures/media_queries.scss").should eq(File.read("#{@path}/fixtures/media_queries.styl").chomp)
+  end
+
+  it "handles sass media queries" do
+    ToStylus.convert("#{@path}/fixtures/media_queries.sass").should eq(File.read("#{@path}/fixtures/media_queries.styl").chomp)
+  end
+
 end
