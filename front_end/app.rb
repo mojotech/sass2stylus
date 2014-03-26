@@ -6,7 +6,7 @@ end
 
 post '/ajax' do
   load '../to_stylus.rb'
-  options = Sass::Engine::DEFAULT_OPTIONS.merge({syntax: :scss})
+  options = {syntax: params[:sass_textarea].include?(";") ? :scss : :sass}
   engine = Sass::Engine.new( params[:sass_textarea], options )
   begin
     tree = engine.to_tree
