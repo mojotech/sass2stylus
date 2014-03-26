@@ -2,18 +2,31 @@
   box-sizing border-box
 html, body
   height 100%
-html
-  &.no_flash .flash_btn
-    display none
+
 html
   &.no_flash .no_flash
     border-top-right-radius 6px
     border-bottom-right-radius 6px
+
+  &.no_flash .flash_btn
+    display none
+
+#content
+  position: relative
+  min-height: 100%
+  padding-bottom: 323px
+  background-color: #f2f6f9
+
 body
   margin 0
   padding 0
   font-family source-sans
   font-weight normal
+
+.base-content
+  position: absolute
+  bottom: 0
+
 h1, h2, h3, .btn
   font-family source-sans-bold
   font-weight normal
@@ -96,7 +109,6 @@ form
   width 50%
   float left
   &.converter-col
-    min-height 100%
     position relative
 
 .inner-padding
