@@ -16,6 +16,7 @@
 ### Development
 - Clone this repository
 - `cd front_end`
+- `bundle install`
 - `npm install -g roots`
 - `roots compile`
 - `ruby app.rb`
