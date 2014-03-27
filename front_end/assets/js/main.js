@@ -54,10 +54,14 @@ $(document).ready(function () {
     matchBrackets: true,
     mode: "text/x-scss"
   });
+  sass_editor.getDoc().setValue("# write your SASS here or upload"+
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
   var stylus_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_stylus"),{
-    lineNumbers: true
+    lineNumbers: true,
   });
+  stylus_editor.getDoc().setValue("# your code will be here!"+
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
   copy_btn.on("dataRequested", function (client, args) {
     client.setText( stylus_editor.getValue() );
