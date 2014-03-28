@@ -7,7 +7,6 @@ S2S.submitForm = function (stylus) {
     data: $("#form").serialize(),
     success: function (data) {
       stylus.getDoc().setValue(data);
-      S2S.stylusCheck(stylus);
     }
   });
   return false;
@@ -29,14 +28,6 @@ S2S.readFile = function (sass, stylus, fileSelector) {
 
     var blob = file.slice(0, file.size);
     reader.readAsBinaryString(blob);
-}
-
-S2S.stylusCheck = function (stylus) {
-  if(stylus.getValue() != ""){
-    $('.conditional').prop("disabled", false).removeClass("inactive");
-  }else{
-    $('.conditional').prop("disabled", true).addClass("inactive");
-  }
 }
 
 S2S.selectText = function (element) {
@@ -108,8 +99,6 @@ $(document).ready(function () {
     stylus_editor.save();
     document.getElementById("download_form").submit()
   });
-
-  stylus_editor.on( 'change', S2S.stylusCheck );
 
   $('.api-code-block').click( function(){ S2S.selectText( $(this).attr('id')) });
 
