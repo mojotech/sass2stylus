@@ -39,6 +39,24 @@ S2S.stylusCheck = function (stylus) {
   }
 }
 
+S2S.selectText = function (element) {
+    var doc = document
+        , text = doc.getElementById(element)
+        , range, selection
+    ;
+    if (doc.body.createTextRange) { //ms
+        range = doc.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) { //all others
+        selection = window.getSelection();
+        range = doc.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+
 $(document).ready(function () {
 
   var copy_btn = new ZeroClipboard( document.getElementById("copy_btn") ),
@@ -92,5 +110,7 @@ $(document).ready(function () {
   });
 
   stylus_editor.on( 'change', S2S.stylusCheck );
+
+  $('.api-code-block').click( function(){ S2S.selectText( $(this).attr('id')) });
 
 });
