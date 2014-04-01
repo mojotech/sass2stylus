@@ -15,11 +15,12 @@
 
 ### Development
 - Clone this repository
-- `cd front_end`
 - `bundle install`
+- `cd front_end`
 - `npm install -g roots`
 - `roots compile`
-- `ruby app.rb`
+- `cd ..`
+- `rackup config.ru`
 
 ---
 
