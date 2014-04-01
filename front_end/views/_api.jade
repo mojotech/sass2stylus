@@ -1,7 +1,7 @@
 .api
   .col-half
     h3 1. Make a request
-    code#request_text.no_flash.api-code-block stylus_content = RestClient.post('http://sass2stylus.herokuapp.com', {'file' => File.new('YOUR-COMPASS-FILE.scss')})
+    code#request_text.no_flash.api-code-block stylus_content = RestClient.post('http://sass2stylus.herokuapp.com/api', {'file' => File.new('YOUR-COMPASS-FILE.scss')})
     button#request_btn.btn.flash_btn(data-clipboard-target='request_text').
         Copy
   .col-half
