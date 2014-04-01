@@ -5,7 +5,7 @@ get '/' do
 end
 
 post '/ajax' do
-  load '../to_stylus.rb'
+  load File.expand_path('to_stylus.rb', settings.root)
   options = {syntax: params[:sass_textarea].include?(";") ? :scss : :sass}
   engine = Sass::Engine.new( params[:sass_textarea], options )
   begin
