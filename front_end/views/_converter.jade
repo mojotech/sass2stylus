@@ -1,21 +1,20 @@
-.converter.container
-  .row
-    .col-md-5.col-md-offset-1.converter-col.sass-col
-      h2.pull-left SASS
+
+.col-half.sass-col.converter-col
+    h2.col-header SASS
+    .action-buttons
       input#file_selector(type='file')
-      button#upload.btn.pull-right.
-        Upload
-      button#convert.btn.pull-right.
-        Convert
+      button#upload.btn.btn-stretch-row Upload
+      button#convert.btn.btn-stretch-row Convert
+    .inner-padding
       form#form.sass-code.cf(method='post', action='/ajax')
         textarea#codemirror_sass(name='sass_textarea')
-
-    .col-md-5.converter-col.styl-col
-      h2.pull-left STYL
-      button#download_btn.btn.pull-right.inactive.download.conditional(disabled='disabled').
-        Download
-      button#copy_btn.btn.pull-right.inactive.copy.conditional.flash_btn(disabled='disabled').
-        Copy
-      form#download_form.styl-code.cf(method='post', action='download')
-        textarea#codemirror_stylus(name='stylus_textarea')
-
+.col-half.styl-col.converter-col
+  h2.col-header STYL
+  .action-buttons
+    button#download_btn.btn-stretch-row.btn.download.
+      Download
+    button#copy_btn.btn.btn-stretch-row.copy.flash_btn.
+      Copy
+  .inner-padding
+    form#download_form.styl-code.cf(method='post', action='download')
+      textarea#codemirror_stylus(name='stylus_textarea')

@@ -10,6 +10,9 @@
   /* Set scrolling behaviour here */
   overflow: auto;
 }
+.CodeMirror-code{
+  min-height: 300px;
+}
 
 /* PADDING */
 

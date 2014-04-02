@@ -10,16 +10,18 @@
 - `sass2stylus foo.scss`
 
 ### API Usage
-- `curl -F file=@/your/local/file.scss http://sass2stylus.herokuapp.com > new_file.styl`
-- `RestClient.post('http://sass2stylus.herokuapp.com', file: File.open('local_file.scss'))`
+- `curl -F file=@/your/local/file.scss http://sass2stylus.herokuapp.com/api > new_file.styl`
+- `RestClient.post('http://sass2stylus.herokuapp.com/api', file: File.open('local_file.scss'))`
 
 ### Development
 - Clone this repository
+- `bundle install`
 - `cd front_end`
 - `bundle install`
 - `npm install -g roots`
 - `roots compile`
-- `ruby app.rb`
+- `cd ..`
+- `rackup config.ru`
 
 ---
 

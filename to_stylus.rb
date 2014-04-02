@@ -2,23 +2,32 @@
 # Convert SASS/SCSS to Stylus
 # Initial work by Andrey Popp (https://github.com/andreypopp)
 
+require 'rubygems'
+require 'bundler/setup'
 require 'sass'
 
 class ToStylus < Sass::Tree::Visitors::Base
 
+  def self.convert(file)
+    engine = Sass::Engine.for_file(file, {})
+
+    tree = engine.to_tree
+    visit(tree)
+  end
+
   def visit(node)
-    if self.respond_to?(:node_name)
-      method = "visit_#{node_name node}"
-    else
+    if self.class.respond_to? :node_name
       method = "visit_#{node.class.node_name}"
+    else
+      method = "visit_#{node_name node}"
     end
     if self.respond_to?(method, true)
       self.send(method, node) {visit_children(node)}
     else
-      if self.respond_to?(:node_name)
-        raise "unhandled node: '#{node_name node}'"
-      else
+      if self.class.respond_to? :node_name
         raise "unhandled node: '#{node.class.node_name}'"
+      else
+        raise "unhandled node: '#{node_name node}'"
       end
     end
   end
@@ -79,8 +88,7 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_media(node)
-    emit "@media #{node.query.map{|i| i.is_a?(Sass::Script::Variable) ? i.inspect : i}.join}"
-    visit_children node
+    emit "#{node.to_sass}".chomp!
   end
 
   def visit_content(node)
@@ -93,6 +101,26 @@ class ToStylus < Sass::Tree::Visitors::Base
 
   def visit_prop(node)
     emit "#{node.name.join(' ')}: #{node.value.to_sass}"
+  end
+
+  def visit_import(node)
+    emit "@import '#{node.imported_filename}'"
+  end
+
+  def visit_cssimport(node)
+    if node.to_sass.include?("http://") && !node.to_sass.include?("url")
+      emit "@import url(#{node.uri})"
+    elsif(node.to_sass.index("\"http") || node.to_sass.index("\'http"))
+      emit "#{node.to_sass}".chomp!
+    elsif(node.to_sass.index("http"))
+      emit "@import #{node.uri}".gsub("(", "(\"").gsub(")", "\")")
+    else
+      emit "#{node.to_sass}".chomp!
+    end
+  end
+
+  def visit_extend(node)
+    emit "#{node.to_sass}".chomp!
   end
 
   def visit_function(node)
@@ -111,16 +139,5 @@ class ToStylus < Sass::Tree::Visitors::Base
     visit_children(node)
     @lines.join("\n")
   end
-end
 
-def main
-  options = Sass::Engine::DEFAULT_OPTIONS
-  engine = Sass::Engine.for_file(ARGV[0], options)
-  tree = engine.to_tree
-  stylus = ToStylus.visit(tree)
-  puts stylus
-end
-
-if (!ARGV[0].nil?)
-  main()
 end

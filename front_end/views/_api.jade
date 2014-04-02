@@ -1,20 +1,12 @@
-.api.container.cf(data-scroll-index='0')
-  .row
-    .col-md-6.col-md-offset-3.text-center
-      h2 Sass2styl has an API
-      p
-        | A blurb about the api. Lorem ipsum dolor sit amet, consectetur mojotech rules adipiscing elit view the
-        a(class='scrollTo toApi inline-link', href='https://github.com/mojotech/sass2stylus') full repo on Github.
-  .row.instructions
-    .col-md-6.col-md-offset-3.text-center
-      strong 1. Make a request
-      .pill.cf
-        button#request_btn.btn.pull-right.copy.flash_btn(data-clipboard-target='request_text').
-          Copy
-        code#request_text.no_flash stylus_content = RestClient.post('http://sass2stylus.herokuapp.com', {'file' => File.new(‘YOUR-COMPASS-FILE.scss')})
-      strong 2. Parse a response
-      .pill.cf
-        button#response_btn.btn.pull-right.copy.flash_btn(data-clipboard-target='response_text').
-          Copy
-        code#response_text.no_flash File.open(‘YOUR-NEW-STYLUS-FILE.stylus', 'w') { |file| file.write(stylus_content) }
-  .cf
+.api
+  .col-half
+    h3 1. Make a request
+    code#request_text.no_flash.api-code-block stylus_content = RestClient.post('http://sass2stylus.herokuapp.com/api', {'file' => File.new('YOUR-COMPASS-FILE.scss')})
+    button#request_btn.btn.flash_btn(data-clipboard-target='request_text').
+        Copy
+  .col-half
+    h3 2. Parse a response
+    code#response_text.no_flash.api-code-block File.open('YOUR-NEW-STYLUS-FILE.stylus', 'w') { |file| file.write(stylus_content) }
+    button#response_btn.btn.flash_btn(data-clipboard-target='response_text').
+      Copy
+  .clear

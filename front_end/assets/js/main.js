@@ -7,7 +7,6 @@ S2S.submitForm = function (stylus) {
     data: $("#form").serialize(),
     success: function (data) {
       stylus.getDoc().setValue(data);
-      S2S.stylusCheck(stylus);
     }
   });
   return false;
@@ -31,12 +30,22 @@ S2S.readFile = function (sass, stylus, fileSelector) {
     reader.readAsBinaryString(blob);
 }
 
-S2S.stylusCheck = function (stylus) {
-  if(stylus.getValue() != ""){
-    $('.conditional').prop("disabled", false).removeClass("inactive");
-  }else{
-    $('.conditional').prop("disabled", true).addClass("inactive");
-  }
+S2S.selectText = function (element) {
+    var doc = document
+        , text = doc.getElementById(element)
+        , range, selection
+    ;
+    if (doc.body.createTextRange) { //ms
+        range = doc.body.createTextRange();
+        range.moveToElementText(text);
+        range.select();
+    } else if (window.getSelection) { //all others
+        selection = window.getSelection();
+        range = doc.createRange();
+        range.selectNodeContents(text);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
 }
 
 $(document).ready(function () {
@@ -52,21 +61,20 @@ $(document).ready(function () {
   var sass_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_sass"), {
     lineNumbers: true,
     matchBrackets: true,
-    placeholder: "Paste your sass code \nor drag a file here to convert.",
-    theme: "neat",
     mode: "text/x-scss"
   });
+  sass_editor.getDoc().setValue("# write your SASS here or upload"+
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
   var stylus_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_stylus"),{
     lineNumbers: true,
-    placeholder: "Copy the converted code here \nor download the .styl file above.",
   });
+  stylus_editor.getDoc().setValue("# your code will be here!"+
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
   copy_btn.on("dataRequested", function (client, args) {
     client.setText( stylus_editor.getValue() );
   });
-
-  $.scrollIt();
 
   var fileSelector = document.getElementById('file_selector');
 
@@ -88,11 +96,10 @@ $(document).ready(function () {
   });
 
   $("#download_btn").click(function () {
-    console.log('download');
     stylus_editor.save();
     document.getElementById("download_form").submit()
   });
 
-  stylus_editor.on( 'change', S2S.stylusCheck );
+  $('.api-code-block').click( function(){ S2S.selectText( $(this).attr('id')) });
 
 });
