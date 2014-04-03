@@ -7,6 +7,11 @@ S2S.submitForm = function (stylus) {
     data: $("#form").serialize(),
     success: function (data) {
       stylus.getDoc().setValue(data);
+    },
+    error: function () {
+      alert("Sorry, we were not able to process your code. \n" +
+        "Please create a new issue and copy/paste your code at the provided link to help us fix the issue. \n"+
+        "https://github.com/mojotech/sass2stylus/issues/new")
     }
   });
   return false;
