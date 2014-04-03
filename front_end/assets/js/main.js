@@ -63,7 +63,7 @@ $(document).ready(function () {
     matchBrackets: true,
     mode: "text/x-scss"
   });
-  sass_editor.getDoc().setValue("# write your SASS here or upload"+
+  sass_editor.getDoc().setValue("# write your SASS/SCSS here or upload"+
     "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
   var stylus_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_stylus"),{
