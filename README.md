@@ -17,11 +17,14 @@
 - Clone this repository
 - `bundle install`
 - `cd front_end`
-- `bundle install`
 - `npm install -g roots`
 - `roots compile`
 - `cd ..`
 - `rackup config.ru`
+
+### Deployment to Heroku
+- `heroku create`
+- `./deploy.sh`
 
 ---
 
