@@ -71,6 +71,13 @@ $(document).ready(function () {
   sass_editor.getDoc().setValue("# write your SASS/SCSS here or upload"+
     "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 
+  var firstTimeOnly = true
+  sass_editor.on('focus', function () {
+    if(firstTimeOnly){
+      sass_editor.getDoc().setValue("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+      firstTimeOnly = false;
+    }
+  });
   var stylus_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_stylus"),{
     lineNumbers: true,
   });
