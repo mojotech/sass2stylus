@@ -139,6 +139,14 @@ class ToStylus < Sass::Tree::Visitors::Base
     visit_children node
   end
 
+  def visit_for(node)
+    is_number = Float(node.to.inspect) != nil rescue false
+    is_number ? loop_end = node.to.inspect.to_i - 1 : loop_end= "$#{node.to.name} - 1"
+    node.exclusive ? to = loop_end : to = node.to.inspect
+    emit "for $#{node.var} in (#{node.from.inspect}..#{to})"
+    visit_children node
+  end
+
   def visit_root(node)
     @indent = -1
     @lines = []

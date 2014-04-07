@@ -53,4 +53,12 @@ describe ToStylus  do
   it "converts sass content to {block}" do
     ToStylus.convert("#{@path}/fixtures/content.sass").should eq(File.read("#{@path}/fixtures/content.styl").chomp)
   end
+
+  it "handles sass for loops" do
+     ToStylus.convert("#{@path}/fixtures/for.sass").should eq(File.read("#{@path}/fixtures/for.styl").chomp)
+  end
+
+  it "handles scss for loops" do
+    ToStylus.convert("#{@path}/fixtures/for.scss").should eq(File.read("#{@path}/fixtures/for.styl").chomp)
+  end
 end
