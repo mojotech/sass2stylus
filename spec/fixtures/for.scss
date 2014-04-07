@@ -1,0 +1,15 @@
+@for $i from 1 through 10 {
+  $emValues: $i;
+}
+
+@for $i from 1 to 10 {
+  $emValues: $i;
+}
+
+@for $i from 1 through $num{
+  $emValues: $i;
+}
+
+@for $i from 1 to $num{
+  $emValues: $i;
+}
