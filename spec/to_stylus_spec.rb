@@ -38,5 +38,12 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/import.sass").should eq(File.read("#{@path}/fixtures/import.styl").chomp)
   end
 
+  it "handles scss argument splats" do
+    ToStylus.convert("#{@path}/fixtures/argument_splat.scss").should eq(File.read("#{@path}/fixtures/argument_splat.styl").chomp)
+  end
+
+  it "handles sass argument splats" do
+    ToStylus.convert("#{@path}/fixtures/argument_splat.sass").should eq(File.read("#{@path}/fixtures/argument_splat.styl").chomp)
+  end
 
 end
