@@ -1,4 +1,7 @@
-# sass2stylus
+Sass2Stylus
+----------
+
+[![Build Status](https://travis-ci.org/mojotech/sass2stylus.svg)](https://travis-ci.org/mojotech/sass2stylus)
 
 ### Installation
 - Install [Ruby](http://ruby-lang.org)
