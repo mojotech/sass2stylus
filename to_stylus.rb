@@ -124,7 +124,12 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_function(node)
-    emit "#{node.name}(#{render_args(node.args)})"
+    if node.splat.nil?
+      emit "#{node.name}(#{render_args(node.args)})"
+    else
+      node.args.push([node.splat, nil])
+      emit "#{node.name}(#{render_args(node.args)}...)"
+    end
     visit_children node
   end
 
