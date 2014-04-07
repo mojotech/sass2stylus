@@ -88,7 +88,8 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_media(node)
-    emit "#{node.to_sass}".chomp!
+    emit "@media #{node.query.map{|i| i.inspect}.join}".gsub! /"/, ""
+    visit_children node
   end
 
   def visit_content(node)

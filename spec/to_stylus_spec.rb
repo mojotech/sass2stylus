@@ -46,4 +46,11 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/argument_splat.sass").should eq(File.read("#{@path}/fixtures/argument_splat.styl").chomp)
   end
 
+  it "converts scss content to {block}" do
+    ToStylus.convert("#{@path}/fixtures/content.scss").should eq(File.read("#{@path}/fixtures/content.styl").chomp)
+  end
+
+  it "converts sass content to {block}" do
+    ToStylus.convert("#{@path}/fixtures/content.sass").should eq(File.read("#{@path}/fixtures/content.styl").chomp)
+  end
 end
