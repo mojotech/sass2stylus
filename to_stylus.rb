@@ -135,7 +135,7 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_rule(node)
-    emit node.parsed_rules.to_s
+    emit "#{node.to_sass.lines[0]}".gsub("\#{", "{").chomp
     visit_children node
   end
 
