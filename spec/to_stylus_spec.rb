@@ -61,4 +61,12 @@ describe ToStylus  do
   it "handles scss for loops" do
     ToStylus.convert("#{@path}/fixtures/for.scss").should eq(File.read("#{@path}/fixtures/for.styl").chomp)
   end
+
+  it "handles sass interpolation" do
+     ToStylus.convert("#{@path}/fixtures/interpolation.sass").should eq(File.read("#{@path}/fixtures/interpolation.styl").chomp)
+  end
+
+  it "handles scss interpolation" do
+    ToStylus.convert("#{@path}/fixtures/interpolation.scss").should eq(File.read("#{@path}/fixtures/interpolation.styl").chomp)
+  end
 end
