@@ -1,0 +1,17 @@
+$list: one two three four;
+
+@mixin mixy {
+  @each $number in $list {
+    #hashtag {
+      background: image-url("#{$number}.png");
+    }
+  }
+}
+
+@mixin mixy {
+  @each $number, $number2 in $list {
+    #hashtag {
+      background: image-url("#{$number}.png");
+    }
+  }
+}

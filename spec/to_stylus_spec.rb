@@ -69,4 +69,13 @@ describe ToStylus  do
   it "handles scss interpolation" do
     ToStylus.convert("#{@path}/fixtures/interpolation.scss").should eq(File.read("#{@path}/fixtures/interpolation.styl").chomp)
   end
+
+  it "converts sass each iteration to for loop" do
+     ToStylus.convert("#{@path}/fixtures/each.sass").should eq(File.read("#{@path}/fixtures/each.styl").chomp)
+  end
+
+  it "converts scss each iteration to for loop" do
+    ToStylus.convert("#{@path}/fixtures/each.scss").should eq(File.read("#{@path}/fixtures/each.styl").chomp)
+  end
+
 end
