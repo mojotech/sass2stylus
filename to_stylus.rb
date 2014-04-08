@@ -147,6 +147,18 @@ class ToStylus < Sass::Tree::Visitors::Base
     visit_children node
   end
 
+  def visit_each(node)
+    if node.vars.length == 1
+      emit "for $#{node.vars.first} in #{node.list.to_sass}"
+      visit_children node
+    else
+      emit "//Cannot convert multi-variable each loops to Stylus"
+      node.to_sass.lines.each do |l|
+        emit "//#{l}".chomp
+      end
+    end
+  end
+
   def visit_root(node)
     @indent = -1
     @lines = []

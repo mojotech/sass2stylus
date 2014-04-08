@@ -1,0 +1,10 @@
+$list = one two three four
+mixy()
+  for $number in $list
+    #hashtag
+      background: image-url("#{$number}.png")
+mixy()
+  //Cannot convert multi-variable each loops to Stylus
+  //@each $number, $number2 in $list
+  //  #hashtag
+  //    background: image-url("#{$number}.png")

@@ -1,0 +1,11 @@
+$list: one two three four
+
+=mixy
+  @each $number in $list
+    #hashtag
+      background: image-url("#{$number}.png")
+
+=mixy
+  @each $number, $number2 in $list
+    #hashtag
+      background: image-url("#{$number}.png")
