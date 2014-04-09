@@ -5,10 +5,8 @@ Sass2Stylus
 ### Development
 - Clone this repository
 - `bundle install`
-- `cd front_end`
-- `npm install -g roots`
-- `roots compile`
-- `cd ..`
+- `npm install`
+- `npm run-script compile`
 - `rackup config.ru`
 
 ### Deployment to Heroku

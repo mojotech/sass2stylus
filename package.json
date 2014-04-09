@@ -16,7 +16,13 @@
       "url": "https://github.com/mojotech/sass2stylus.git"
     }
   ],
+  "scripts": {
+    "compile": "cd front_end && roots compile --compress"
+  },
   "github": "https://github.com/mojotech/sass2stylus",
   "preferGlobal": true,
-  "bin": "./sass2stylus.js"
+  "bin": "./sass2stylus.js",
+  "devDependencies": {
+    "roots": "^2.1.3"
+  }
 }
