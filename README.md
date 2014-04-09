@@ -1,5 +1,6 @@
 Sass2Stylus
 ----------
+#[Use it live](http://sass2stylus.com)
 
 [![Build Status](https://travis-ci.org/mojotech/sass2stylus.svg)](https://travis-ci.org/mojotech/sass2stylus)
 
@@ -15,19 +16,6 @@ Sass2Stylus
 ### API Usage
 - `curl -F file=@/your/local/file.scss http://sass2stylus.com/api > new_file.styl`
 - `RestClient.post('http://sass2stylus.com/api', file: File.open('local_file.scss'))`
-
-### Development
-- Clone this repository
-- `bundle install`
-- `cd front_end`
-- `npm install -g roots`
-- `roots compile`
-- `cd ..`
-- `rackup config.ru`
-
-### Deployment to Heroku
-- `heroku create`
-- `./deploy.sh`
 
 ---
 
