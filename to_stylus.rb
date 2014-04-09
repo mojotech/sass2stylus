@@ -166,6 +166,13 @@ class ToStylus < Sass::Tree::Visitors::Base
     end
   end
 
+  def visit_atroot(node)
+    emit "//Stylus does not support @at-root"
+    node.to_sass.lines.each do |l|
+      emit "//#{l}".chomp
+    end
+  end
+
   def visit_root(node)
     @indent = -1
     @lines = []
