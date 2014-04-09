@@ -78,4 +78,12 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/each.scss").should eq(File.read("#{@path}/fixtures/each.styl").chomp)
   end
 
+  it "comments out sass while loops" do
+     ToStylus.convert("#{@path}/fixtures/while.sass").should eq(File.read("#{@path}/fixtures/while.styl").chomp)
+  end
+
+  it "comments out scss while loops" do
+    ToStylus.convert("#{@path}/fixtures/while.scss").should eq(File.read("#{@path}/fixtures/while.styl").chomp)
+  end
+
 end
