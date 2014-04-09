@@ -121,7 +121,7 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_extend(node)
-    emit "#{node.to_sass}".chomp!
+    emit "#{node.to_sass}".gsub("%","$").chomp!
   end
 
   def visit_function(node)
@@ -135,7 +135,7 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_rule(node)
-    emit "#{node.to_sass.lines[0]}".gsub("\#{", "{").chomp
+    emit "#{node.to_sass.lines[0]}".gsub("\#{", "{").gsub("%", "$").chomp
     visit_children node
   end
 

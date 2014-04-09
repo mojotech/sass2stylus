@@ -93,4 +93,12 @@ describe ToStylus  do
   it "comments out scss @at-root" do
     ToStylus.convert("#{@path}/fixtures/atroot.scss").should eq(File.read("#{@path}/fixtures/atroot.styl").chomp)
   end
+
+  it "handles sass placeholder selectors" do
+     ToStylus.convert("#{@path}/fixtures/placeholder_selectors.sass").should eq(File.read("#{@path}/fixtures/placeholder_selectors.styl").chomp)
+  end
+
+  it "comments scss placeholder selectors" do
+    ToStylus.convert("#{@path}/fixtures/placeholder_selectors.scss").should eq(File.read("#{@path}/fixtures/placeholder_selectors.styl").chomp)
+  end
 end

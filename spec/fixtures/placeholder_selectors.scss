@@ -1,0 +1,6 @@
+%foo {
+  background: red;
+}
+h1 {
+  @extend %foo;
+}
