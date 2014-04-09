@@ -86,4 +86,11 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/while.scss").should eq(File.read("#{@path}/fixtures/while.styl").chomp)
   end
 
+  it "comments out sass @at-root" do
+     ToStylus.convert("#{@path}/fixtures/atroot.sass").should eq(File.read("#{@path}/fixtures/atroot.styl").chomp)
+  end
+
+  it "comments out scss @at-root" do
+    ToStylus.convert("#{@path}/fixtures/atroot.scss").should eq(File.read("#{@path}/fixtures/atroot.styl").chomp)
+  end
 end
