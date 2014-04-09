@@ -53,6 +53,9 @@ S2S.selectText = function (element) {
     }
 }
 
+var sassPlaceholder = "# write your SASS/SCSS here or upload"+
+    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+
 $(document).ready(function () {
 
   var copy_btn = new ZeroClipboard( document.getElementById("copy_btn") ),
@@ -68,16 +71,14 @@ $(document).ready(function () {
     matchBrackets: true,
     mode: "text/x-scss"
   });
-  sass_editor.getDoc().setValue("# write your SASS/SCSS here or upload"+
-    "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+  sass_editor.getDoc().setValue(sassPlaceholder);
 
-  var firstTimeOnly = true
   sass_editor.on('focus', function () {
-    if(firstTimeOnly){
+    if( sass_editor.getValue() === sassPlaceholder ) {
       sass_editor.getDoc().setValue("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-      firstTimeOnly = false;
     }
   });
+
   var stylus_editor = CodeMirror.fromTextArea(document.getElementById("codemirror_stylus"),{
     lineNumbers: true,
   });
@@ -113,5 +114,11 @@ $(document).ready(function () {
   });
 
   $('.api-code-block').click( function(){ S2S.selectText( $(this).attr('id')) });
+
+  sass_editor.on('blur', function () {
+    if( sass_editor.getValue().match(/^[\r\n ]+$/) ) {
+      sass_editor.getDoc().setValue(sassPlaceholder);
+    }
+  });
 
 });
