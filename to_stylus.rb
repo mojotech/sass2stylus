@@ -38,6 +38,20 @@ class ToStylus < Sass::Tree::Visitors::Base
     @indent -= 1
   end
 
+  def visit_prop(node, output="")
+    if !node.children.empty?
+      output << "#{node.name.join('')}-"
+      unless node.value.to_sass.empty?
+        emit "#{output}#{node.value.to_sass}".sub(/(.*)-/, '\1: ')
+      end
+      node.children.each do |child|
+        visit_prop(child,output)
+      end
+    else
+      emit "#{output}#{node.name.join('')}: #{node.value.to_sass}"
+    end
+  end
+
   def render_arg(arg)
     if arg.is_a? Array
       var = arg[0]
@@ -98,10 +112,6 @@ class ToStylus < Sass::Tree::Visitors::Base
 
   def visit_mixin(node)
     emit "#{node.name}(#{render_args(node.args)})"
-  end
-
-  def visit_prop(node)
-    emit "#{node.name.join(' ')}: #{node.value.to_sass}"
   end
 
   def visit_import(node)

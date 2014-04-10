@@ -101,4 +101,13 @@ describe ToStylus  do
   it "comments scss placeholder selectors" do
     ToStylus.convert("#{@path}/fixtures/placeholder_selectors.scss").should eq(File.read("#{@path}/fixtures/placeholder_selectors.styl").chomp)
   end
+
+  it "handles sass nested properties" do
+     ToStylus.convert("#{@path}/fixtures/nested_properties.sass").should eq(File.read("#{@path}/fixtures/nested_properties.styl").chomp)
+  end
+
+  it "comments scss nested properties" do
+    ToStylus.convert("#{@path}/fixtures/nested_properties.scss").should eq(File.read("#{@path}/fixtures/nested_properties.styl").chomp)
+  end
 end
+
