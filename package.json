@@ -2,7 +2,7 @@
   "name": "sass2stylus",
   "author": "Jake Buob, Cory Simmons / MojoTech, Andrey Popp",
   "main": "sass2stylus.js",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "Convert Sass (and SCSS) to Stylus",
   "keywords": [
     "sass",
