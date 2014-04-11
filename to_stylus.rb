@@ -2,8 +2,6 @@
 # Convert SASS/SCSS to Stylus
 # Initial work by Andrey Popp (https://github.com/andreypopp)
 
-require 'rubygems'
-require 'bundler/setup'
 require 'sass'
 
 class ToStylus < Sass::Tree::Visitors::Base
