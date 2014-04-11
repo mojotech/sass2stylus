@@ -48,7 +48,10 @@ class ToStylus < Sass::Tree::Visitors::Base
         visit_prop(child,output)
       end
     else
-      emit "#{output}#{node.name.join('')}: #{node.value.to_sass}"
+      "#{node.name.join("")[0]}" == "#" ?
+        node_name = "#{output}{#{node.name-[""]}}:".tr('[]','') : node_name = "#{output}#{node.name.join('')}:"
+
+      emit node_name << " #{node.value.to_sass}".gsub("\#{", "{")
     end
   end
 
