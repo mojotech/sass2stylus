@@ -1,0 +1,4 @@
+=adjust-location($x, $y)
+  @if unitless($x)
+    @warn "Assuming #{$x} to be in pixels"
+    $x: 1px * $x

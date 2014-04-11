@@ -102,6 +102,14 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/debug.scss").should eq(File.read("#{@path}/fixtures/debug.styl").chomp)
   end
 
+  it "comments out sass @warn" do
+     ToStylus.convert("#{@path}/fixtures/warn.sass").should eq(File.read("#{@path}/fixtures/warn.styl").chomp)
+  end
+
+  it "comments out scss @warn" do
+    ToStylus.convert("#{@path}/fixtures/warn.scss").should eq(File.read("#{@path}/fixtures/warn.styl").chomp)
+  end
+
   it "handles sass placeholder selectors" do
      ToStylus.convert("#{@path}/fixtures/placeholder_selectors.sass").should eq(File.read("#{@path}/fixtures/placeholder_selectors.styl").chomp)
   end
@@ -118,4 +126,3 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/nested_properties.scss").should eq(File.read("#{@path}/fixtures/nested_properties.styl").chomp)
   end
 end
-

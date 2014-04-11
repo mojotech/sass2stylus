@@ -1,0 +1,5 @@
+adjust-location($x, $y)
+  if unitless($x)
+    //Stylus does not support @warn
+    //@warn "Assuming #{$x} to be in pixels"
+    $x = 1px * $x
