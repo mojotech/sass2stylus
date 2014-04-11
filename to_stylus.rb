@@ -173,6 +173,13 @@ class ToStylus < Sass::Tree::Visitors::Base
     end
   end
 
+  def visit_debug(node)
+    emit "//Stylus does not support @debug"
+    node.to_sass.lines.each do |l|
+      emit "//#{l}".chomp
+    end
+  end
+
   def visit_root(node)
     @indent = -1
     @lines = []
