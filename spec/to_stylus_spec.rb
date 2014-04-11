@@ -122,7 +122,15 @@ describe ToStylus  do
      ToStylus.convert("#{@path}/fixtures/nested_properties.sass").should eq(File.read("#{@path}/fixtures/nested_properties.styl").chomp)
   end
 
-  it "comments scss nested properties" do
+  it "handles scss nested properties" do
     ToStylus.convert("#{@path}/fixtures/nested_properties.scss").should eq(File.read("#{@path}/fixtures/nested_properties.styl").chomp)
+  end
+
+  it "handles sass interpolated key values" do
+     ToStylus.convert("#{@path}/fixtures/interpolated_key_values.sass").should eq(File.read("#{@path}/fixtures/interpolated_key_values.styl").chomp)
+  end
+
+  it "handles scss interpolated key values" do
+    ToStylus.convert("#{@path}/fixtures/interpolated_key_values.scss").should eq(File.read("#{@path}/fixtures/interpolated_key_values.styl").chomp)
   end
 end
