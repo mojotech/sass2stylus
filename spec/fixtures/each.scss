@@ -1,7 +1,7 @@
 $list: one two three four;
 
 @mixin mixy {
-  @each $number in $list {
+  @each $number, $number2 in $list {
     #hashtag {
       background: image-url("#{$number}.png");
     }
@@ -9,7 +9,7 @@ $list: one two three four;
 }
 
 @mixin mixy {
-  @each $number, $number2 in $list {
+  @each $number in $list {
     #hashtag {
       background: image-url("#{$number}.png");
     }
