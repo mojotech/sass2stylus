@@ -3,8 +3,10 @@
 # Initial work by Andrey Popp (https://github.com/andreypopp)
 
 require 'sass'
+require 'yaml'
 
 class ToStylus < Sass::Tree::Visitors::Base
+  @@functions = YAML::load_file(File.join(__dir__ , 'functions.yml'))
 
   def self.convert(file)
     engine = Sass::Engine.for_file(file, {})
@@ -36,11 +38,27 @@ class ToStylus < Sass::Tree::Visitors::Base
     @indent -= 1
   end
 
+  def determine_support(node, is_value)
+    is_value ? (node_class = node.value) : (node_class = node.expr)
+    if node_class.is_a? Sass::Script::Tree::Funcall
+      @@functions['disabled_functions'].each do |func|
+        if !node_class.inspect.match(func.to_s).nil?
+          emit "//Function #{func} is not supported in Stylus"
+          return func
+        end
+      end
+      return
+    end
+  end
+
   def visit_prop(node, output="")
+    func_support = determine_support(node, true)
     if !node.children.empty?
       output << "#{node.name.join('')}-"
       unless node.value.to_sass.empty?
-        emit "#{output}#{node.value.to_sass}".sub(/(.*)-/, '\1: ')
+        #for nested scss with values, change the last "-" in the output to a ":" to format output correctly
+        func_output = "#{output}#{node.value.to_sass}".sub(/(.*)-/, '\1: ').gsub("\#{","{")
+        func_support.nil? ? (emit func_output) : (emit "//" << func_output)
       end
       node.children.each do |child|
         visit_prop(child,output)
@@ -49,8 +67,15 @@ class ToStylus < Sass::Tree::Visitors::Base
       "#{node.name.join("")[0]}" == "#" ?
         node_name = "#{output}{#{node.name-[""]}}:".tr('[]','') : node_name = "#{output}#{node.name.join('')}:"
 
-      emit node_name << " #{node.value.to_sass}".gsub("\#{", "{")
+      func_output = node_name << " #{node.value.to_sass}".gsub("\#{", "{")
+      func_support.nil? ? (emit func_output) : (emit "//" << func_output)
     end
+  end
+
+  def visit_variable(node)
+    func_support = determine_support(node, false)
+    output = "$#{node.name} = #{node.expr.to_sass}"
+    func_support.nil? ? (emit output) : (emit "//" << output)
   end
 
   def render_arg(arg)
@@ -86,15 +111,13 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_return(node)
-    emit node.expr.to_sass
+    func_support = determine_support(node, false)
+    output = node.expr.to_sass
+    func_support.nil? ? (emit output) : (emit "//" << output)
   end
 
   def visit_comment(node)
     node.value.each { |s| emit s }
-  end
-
-  def visit_variable(node)
-    emit "$#{node.name} = #{node.expr.to_sass}"
   end
 
   def visit_mixindef(node)

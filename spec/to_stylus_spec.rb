@@ -133,4 +133,13 @@ describe ToStylus  do
   it "handles scss interpolated key values" do
     ToStylus.convert("#{@path}/fixtures/interpolated_key_values.scss").should eq(File.read("#{@path}/fixtures/interpolated_key_values.styl").chomp)
   end
+
+ it "comments out sass unsupported functions" do
+    ToStylus.convert("#{@path}/fixtures/disabled_functions.sass").should eq(File.read("#{@path}/fixtures/disabled_functions.styl").chomp)
+ end
+
+ it "comments out scss unsupported functions" do
+   ToStylus.convert("#{@path}/fixtures/disabled_functions.scss").should eq(File.read("#{@path}/fixtures/disabled_functions.styl").chomp)
+ end
+
 end
