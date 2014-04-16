@@ -1,10 +1,14 @@
+//Below is a list of the Sass rules that could not be converted to Stylus
+// @each: line 4 in your Sass file
+
+
 $list = one two three four
-mixy()
-  for $number in $list
-    #hashtag
-      background: image-url("{$number}.png")
 mixy()
   //Cannot convert multi-variable each loops to Stylus
   //@each $number, $number2 in $list
   //  #hashtag
   //    background: image-url("#{$number}.png")
+mixy()
+  for $number in $list
+    #hashtag
+      background: image-url("{$number}.png")

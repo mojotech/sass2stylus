@@ -43,6 +43,7 @@ class ToStylus < Sass::Tree::Visitors::Base
     if node_class.is_a? Sass::Script::Tree::Funcall
       @@functions['disabled_functions'].each do |func|
         if !node_class.inspect.match(func.to_s).nil?
+          @errors.push("//#{func}: line #{node.line} in your Sass file")
           emit "//Function #{func} is not supported in Stylus"
           return func
         end
@@ -181,50 +182,55 @@ class ToStylus < Sass::Tree::Visitors::Base
     visit_children node
   end
 
+  def comment_out(node)
+    node.to_sass.lines.each {|l| emit "//#{l}".chomp }
+  end
+
   def visit_each(node)
     if node.vars.length == 1
       emit "for $#{node.vars.first} in #{node.list.to_sass}"
       visit_children node
     else
       emit "//Cannot convert multi-variable each loops to Stylus"
-      node.to_sass.lines.each do |l|
-        emit "//#{l}".chomp
-      end
+      @errors.push("// @each: line #{node.line} in your Sass file")
+      comment_out(node)
     end
   end
 
   def visit_while(node)
     emit "//Stylus does not support while loops"
-    node.to_sass.lines.each do |l|
-      emit "//#{l}".chomp
-    end
+    @errors.push("// @while: line #{node.line} in your Sass file")
+    comment_out(node)
   end
 
   def visit_atroot(node)
     emit "//Stylus does not support @at-root"
-    node.to_sass.lines.each do |l|
-      emit "//#{l}".chomp
-    end
+    @errors.push("// @at-root: line #{node.line} in your Sass file")
+    comment_out(node)
   end
 
   def visit_debug(node)
     emit "//Stylus does not support @debug"
-    node.to_sass.lines.each do |l|
-      emit "//#{l}".chomp
-    end
+    @errors.push("// @debug: line #{node.line} in your Sass file")
+    comment_out(node)
   end
 
   def visit_warn(node)
     emit "//Stylus does not support @warn"
-    node.to_sass.lines.each do |l|
-      emit "//#{l}".chomp
-    end
+    @errors.push("// @warn: line #{node.line} in your Sass file")
+    comment_out(node)
   end
 
   def visit_root(node)
     @indent = -1
+    @errors = []
     @lines = []
     visit_children(node)
+    unless @errors.empty?
+      @errors.unshift("//Below is a list of the Sass rules that could not be converted to Stylus")
+      @errors.push("\n")
+      @lines.unshift(*@errors)
+    end
     @lines.join("\n")
   end
 
