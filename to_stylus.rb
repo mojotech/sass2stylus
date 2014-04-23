@@ -65,11 +65,15 @@ class ToStylus < Sass::Tree::Visitors::Base
         visit_prop(child,output)
       end
     else
-      "#{node.name.join("")[0]}" == "#" ?
-        node_name = "#{output}{#{node.name-[""]}}:".tr('[]','') : node_name = "#{output}#{node.name.join('')}:"
+      unless node.is_a? Sass::Tree::CommentNode
+        "#{node.name.join("")[0]}" == "#" ?
+          node_name = "#{output}{#{node.name-[""]}}:".tr('[]','') : node_name = "#{output}#{node.name.join('')}:"
 
-      func_output = node_name << " #{node.value.to_sass}".gsub("\#{", "{")
-      func_support.nil? ? (emit func_output) : (emit "//" << func_output)
+        func_output = node_name << " #{node.value.to_sass}".gsub("\#{", "{")
+        func_support.nil? ? (emit func_output) : (emit "//" << func_output)
+      else
+        visit(node)
+      end
     end
   end
 
