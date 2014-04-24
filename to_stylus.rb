@@ -122,7 +122,8 @@ class ToStylus < Sass::Tree::Visitors::Base
   end
 
   def visit_comment(node)
-    node.value.each { |s| emit s }
+    node.invisible? ? lines = node.to_sass.lines : lines = node.value.first.split("\n")
+    lines.each { |line| emit line.tr("\n", "")}
   end
 
   def visit_mixindef(node)

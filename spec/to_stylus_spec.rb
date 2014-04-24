@@ -142,4 +142,8 @@ describe ToStylus  do
    ToStylus.convert("#{@path}/fixtures/disabled_functions.scss").should eq(File.read("#{@path}/fixtures/disabled_functions.styl").chomp)
  end
 
+ it "conversts comments " do
+    ToStylus.convert("#{@path}/fixtures/comments.scss").should eq(File.read("#{@path}/fixtures/comments.styl").chomp)
+ end
+
 end
