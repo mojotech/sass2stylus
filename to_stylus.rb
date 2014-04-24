@@ -179,11 +179,26 @@ class ToStylus < Sass::Tree::Visitors::Base
     visit_children node
   end
 
+  def for_helper(node, from_or_to)
+    @@functions['disabled_functions'].each do |func|
+      unless (from_or_to).inspect.match(func.to_s).nil?
+        @errors.push("//#{func}: line #{node.line} in your Sass file")
+        emit "//Function #{func} is not supported in Stylus"
+      end
+    end
+  end
+
   def visit_for(node)
-    is_number = Float(node.to.inspect) != nil rescue false
-    is_number ? loop_end = node.to.inspect.to_i - 1 : loop_end= "$#{node.to.name} - 1"
-    node.exclusive ? to = loop_end : to = node.to.inspect
-    emit "for $#{node.var} in (#{node.from.inspect}..#{to})"
+    (node.from.is_a? Sass::Script::Tree::Funcall) ? for_helper(node, node.from) : nil
+    from = node.from.to_sass
+
+    (node.to.is_a? Sass::Script::Tree::Funcall) ? for_helper(node, node.to) : nil
+    temp_to = node.to.to_sass
+
+    (node.to.is_a? Sass::Script::Tree::Literal) ? exclusive_to = temp_to.to_i - 1 : exclusive_to = "(#{temp_to}) - 1"
+    node.exclusive ? to = exclusive_to : to = temp_to
+
+    emit "for $#{node.var} in (#{from})..(#{to})"
     visit_children node
   end
 
