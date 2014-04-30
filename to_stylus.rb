@@ -202,6 +202,11 @@ class ToStylus < Sass::Tree::Visitors::Base
     visit_children node
   end
 
+  def visit_directive(node)
+    emit "#{node.name}"
+    visit_children node
+  end
+
   def comment_out(node)
     node.to_sass.lines.each {|l| emit "//#{l}".chomp }
   end

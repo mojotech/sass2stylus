@@ -146,4 +146,13 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/comments.scss").should eq(File.read("#{@path}/fixtures/comments.styl").chomp)
  end
 
+ it "handles scss @font-face" do
+   ToStylus.convert("#{@path}/fixtures/font_face.scss").should eq(File.read("#{@path}/fixtures/font_face.styl").chomp)
+ end
+
+ it "handles sass @font-face " do
+    ToStylus.convert("#{@path}/fixtures/font_face.sass").should eq(File.read("#{@path}/fixtures/font_face.styl").chomp)
+ end
+
+
 end
