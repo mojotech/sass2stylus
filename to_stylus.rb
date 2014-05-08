@@ -213,7 +213,7 @@ class ToStylus < Sass::Tree::Visitors::Base
 
   def visit_each(node)
     if node.vars.length == 1
-      emit "for $#{node.vars.first} in #{node.list.to_sass}"
+      emit "for $#{node.vars.first} in #{node.list.to_sass}".gsub(",","")
       visit_children node
     else
       emit "//Cannot convert multi-variable each loops to Stylus"

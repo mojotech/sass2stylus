@@ -15,3 +15,8 @@ $list: one two three four;
     }
   }
 }
+@each $animal in puma, sea-slug, egret, salamander {
+  .#{$animal}-icon {
+    width: 10px;
+  }
+}
