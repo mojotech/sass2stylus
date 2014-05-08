@@ -154,4 +154,12 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/font_face.sass").should eq(File.read("#{@path}/fixtures/font_face.styl").chomp)
   end
 
+  it "wraps scss prop operations in parentheses" do
+   ToStylus.convert("#{@path}/fixtures/prop_operations.scss").should eq(File.read("#{@path}/fixtures/prop_operations.styl").chomp)
+  end
+
+  it "wraps sass prop operations in parentheses" do
+    ToStylus.convert("#{@path}/fixtures/prop_operations.sass").should eq(File.read("#{@path}/fixtures/prop_operations.styl").chomp)
+  end
+
 end
