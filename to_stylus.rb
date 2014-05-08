@@ -58,7 +58,11 @@ class ToStylus < Sass::Tree::Visitors::Base
       output << "#{node.name.join('')}-"
       unless node.value.to_sass.empty?
         #for nested scss with values, change the last "-" in the output to a ":" to format output correctly
-        func_output = "#{output}#{node.value.to_sass}".sub(/(.*)-/, '\1: ').gsub("\#{","{")
+        if node.value.is_a? Sass::Script::Tree::Operation
+          func_output = "#{output}(#{node.value.to_sass})".sub(/(.*)-/, '\1: ').gsub("\#{","{")
+        else
+          func_output = "#{output}#{node.value.to_sass}".sub(/(.*)-/, '\1: ').gsub("\#{","{")
+        end
         func_support.nil? ? (emit func_output) : (emit "//" << func_output)
       end
       node.children.each do |child|
@@ -69,7 +73,11 @@ class ToStylus < Sass::Tree::Visitors::Base
         "#{node.name.join("")[0]}" == "#" ?
           node_name = "#{output}{#{node.name-[""]}}:".tr('[]','') : node_name = "#{output}#{node.name.join('')}:"
 
-        func_output = node_name << " #{node.value.to_sass}".gsub("\#{", "{")
+        if node.value.is_a? Sass::Script::Tree::Operation
+          func_output = node_name << " (#{node.value.to_sass})".gsub("\#{", "{")
+        else
+          func_output = node_name << " #{node.value.to_sass}".gsub("\#{", "{")
+        end
         func_support.nil? ? (emit func_output) : (emit "//" << func_output)
       else
         visit(node)
