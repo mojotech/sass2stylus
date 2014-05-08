@@ -9,3 +9,9 @@ $list: one two three four
   @each $number in $list
     #hashtag
       background: image-url("#{$number}.png")
+
+@each $animal in puma, sea-slug, egret, salamander
+  .#{$animal}-icon
+    width: 10px
+
+
