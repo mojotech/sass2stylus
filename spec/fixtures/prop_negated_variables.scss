@@ -1,0 +1,4 @@
+$foo: 10px;
+.bar{
+  margin: -$foo;
+}

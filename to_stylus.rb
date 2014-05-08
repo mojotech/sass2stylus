@@ -60,6 +60,8 @@ class ToStylus < Sass::Tree::Visitors::Base
         #for nested scss with values, change the last "-" in the output to a ":" to format output correctly
         if node.value.is_a? Sass::Script::Tree::Operation
           func_output = "#{output}(#{node.value.to_sass})".sub(/(.*)-/, '\1: ').gsub("\#{","{")
+        elsif node.value.is_a?(Sass::Script::Tree::UnaryOperation) && node.value.operator.to_s == 'minus'
+          func_output = "#{output}".sub(/(.*)-/, '\1: ') <<"-1*#{node.value.operand.inspect}".gsub("\#{","{")
         else
           func_output = "#{output}#{node.value.to_sass}".sub(/(.*)-/, '\1: ').gsub("\#{","{")
         end
@@ -75,6 +77,8 @@ class ToStylus < Sass::Tree::Visitors::Base
 
         if node.value.is_a? Sass::Script::Tree::Operation
           func_output = node_name << " (#{node.value.to_sass})".gsub("\#{", "{")
+        elsif node.value.is_a?(Sass::Script::Tree::UnaryOperation) && node.value.operator.to_s == 'minus'
+          func_output = node_name << " -1*#{node.value.operand.inspect}"
         else
           func_output = node_name << " #{node.value.to_sass}".gsub("\#{", "{")
         end

@@ -162,4 +162,11 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/prop_operations.sass").should eq(File.read("#{@path}/fixtures/prop_operations.styl").chomp)
   end
 
+  it "converts negated prop variables to operation scss" do
+   ToStylus.convert("#{@path}/fixtures/prop_negated_variables.scss").should eq(File.read("#{@path}/fixtures/prop_negated_variables.styl").chomp)
+  end
+
+  it "converts negated prop variables to operation sass" do
+    ToStylus.convert("#{@path}/fixtures/prop_negated_variables.sass").should eq(File.read("#{@path}/fixtures/prop_negated_variables.styl").chomp)
+  end
 end
