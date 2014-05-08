@@ -134,25 +134,32 @@ describe ToStylus  do
     ToStylus.convert("#{@path}/fixtures/interpolated_key_values.scss").should eq(File.read("#{@path}/fixtures/interpolated_key_values.styl").chomp)
   end
 
- it "comments out sass unsupported functions" do
+  it "comments out sass unsupported functions" do
     ToStylus.convert("#{@path}/fixtures/disabled_functions.sass").should eq(File.read("#{@path}/fixtures/disabled_functions.styl").chomp)
- end
+  end
 
- it "comments out scss unsupported functions" do
+  it "comments out scss unsupported functions" do
    ToStylus.convert("#{@path}/fixtures/disabled_functions.scss").should eq(File.read("#{@path}/fixtures/disabled_functions.styl").chomp)
- end
+  end
 
- it "conversts comments " do
+  it "conversts comments" do
     ToStylus.convert("#{@path}/fixtures/comments.scss").should eq(File.read("#{@path}/fixtures/comments.styl").chomp)
- end
+  end
 
- it "handles scss @font-face" do
+  it "handles scss @font-face" do
    ToStylus.convert("#{@path}/fixtures/font_face.scss").should eq(File.read("#{@path}/fixtures/font_face.styl").chomp)
- end
+  end
 
- it "handles sass @font-face " do
+  it "handles sass @font-face " do
     ToStylus.convert("#{@path}/fixtures/font_face.sass").should eq(File.read("#{@path}/fixtures/font_face.styl").chomp)
- end
+  end
 
+  it "wraps scss prop operations in parentheses" do
+   ToStylus.convert("#{@path}/fixtures/prop_operations.scss").should eq(File.read("#{@path}/fixtures/prop_operations.styl").chomp)
+  end
+
+  it "wraps sass prop operations in parentheses" do
+    ToStylus.convert("#{@path}/fixtures/prop_operations.sass").should eq(File.read("#{@path}/fixtures/prop_operations.styl").chomp)
+  end
 
 end
