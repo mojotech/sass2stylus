@@ -175,4 +175,8 @@ describe ToStylus  do
       ToStylus.convert("#{@path}/fixtures/multi_line_selectors.#{type}").should eq(File.read("#{@path}/fixtures/multi_line_selectors.styl").chomp)
     end
   end
+
+  it "handles Sass charset directive" do
+    ToStylus.convert("#{@path}/fixtures/charset.scss").should eq(File.read("#{@path}/fixtures/charset.styl").chomp)
+  end
 end

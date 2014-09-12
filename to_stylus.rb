@@ -21,6 +21,7 @@ class ToStylus < Sass::Tree::Visitors::Base
     else
       method = "visit_#{node_name node}"
     end
+    return if node.is_a?(Sass::Tree::CharsetNode)
     if self.respond_to?(method, true)
       self.send(method, node) {visit_children(node)}
     else
