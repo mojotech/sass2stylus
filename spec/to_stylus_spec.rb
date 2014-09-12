@@ -169,4 +169,8 @@ describe ToStylus  do
   it "converts negated prop variables to operation sass" do
     ToStylus.convert("#{@path}/fixtures/prop_negated_variables.sass").should eq(File.read("#{@path}/fixtures/prop_negated_variables.styl").chomp)
   end
+
+  it "handles multi-line selectors" do
+    ToStylus.convert("#{@path}/fixtures/multi_line_selectors.scss").should eq(File.read("#{@path}/fixtures/multi_line_selectors.styl").chomp)
+  end
 end
