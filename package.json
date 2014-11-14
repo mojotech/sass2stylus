@@ -10,7 +10,7 @@
     "stylus",
     "convert"
   ],
-  "repositories": [
+  "repository": [
     {
       "type": "git",
       "url": "https://github.com/mojotech/sass2stylus.git"
