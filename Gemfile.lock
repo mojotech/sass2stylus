@@ -2,7 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.2.5)
-    rack (1.5.2)
+    rack (1.6.11)
     rack-protection (1.5.2)
       rack
     rspec (2.14.1)
@@ -27,3 +27,6 @@ DEPENDENCIES
   rspec
   sass (= 3.3.2)
   sinatra
+
+BUNDLED WITH
+   1.11.2
