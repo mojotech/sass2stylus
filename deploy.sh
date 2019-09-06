@@ -1,6 +1,6 @@
 sed -i.bak 's/\*\/public\/\*//' .gitignore
 rm .gitignore.bak
-npm run-script compile
+npm run build
 git checkout -b deploy
 git add front_end
 git commit -m 'deploy'

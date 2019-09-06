@@ -17,12 +17,18 @@
     }
   ],
   "scripts": {
-    "compile": "cd front_end && roots compile --compress"
+    "clean": "rm -rf front_end/public",
+    "watch": "npm run js:copy && npm run css:watch",
+    "build": "npm run clean && npm run js:copy && npm run css:build",
+    "js:copy": "cp -r front_end/assets/js front_end/public/js",
+    "css:copy": "cp front_end/assets/css/codemirror.css front_end/public/css && cp -r front_end/fonts front_end/public",
+    "css:watch": "npm run css:copy && stylus -w front_end/assets/css/master.styl -o front_end/public/css/master.css",
+    "css:build": "npm run css:copy && stylus front_end/assets/css/master.styl -o front_end/public/css/master.css"
   },
   "github": "https://github.com/mojotech/sass2stylus",
   "preferGlobal": true,
   "bin": "./sass2stylus.js",
   "devDependencies": {
-    "roots": "^2.1.3"
+    "stylus": "^0.54.7"
   }
 }

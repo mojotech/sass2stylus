@@ -6,7 +6,7 @@ Sass2Stylus
 - Clone this repository
 - `bundle install`
 - `npm install`
-- `npm run-script compile`
+- `npm run watch`
 - `rackup config.ru`
 
 ### Deployment to Heroku
