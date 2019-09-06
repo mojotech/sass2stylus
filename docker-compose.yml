@@ -1,0 +1,10 @@
+app:
+  build: .
+  command: bash -lc "bundle install && npm install && bundle exec foreman start"
+  restart: unless-stopped
+  tty: true
+  stdin_open: true
+  volumes:
+    - .:/app
+  ports:
+    - "3838:3838"

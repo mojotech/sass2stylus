@@ -9,6 +9,11 @@ Sass2Stylus
 - `npm run watch`
 - `rackup config.ru`
 
+#### With Docker
+- `docker-compose build`
+- `docker-compose up`
+- Navigate to http://localhost:3838
+
 ### Deployment to Heroku
 - `heroku create`
 - `./deploy.sh`
