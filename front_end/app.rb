@@ -1,7 +1,8 @@
 require 'sinatra'
+require "haml"
 
 get '/' do
-  send_file File.expand_path('index.html', settings.public_folder)
+  haml :index
 end
 
 post '/ajax' do
