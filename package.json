@@ -17,13 +17,14 @@
     }
   ],
   "scripts": {
-    "clean": "rm -rf front_end/public",
-    "watch": "npm run js:copy && npm run css:watch",
-    "build": "npm run clean && npm run js:copy && npm run css:build",
-    "js:copy": "cp -r front_end/assets/js front_end/public/js",
-    "css:copy": "cp front_end/assets/css/codemirror.css front_end/public/css && cp -r front_end/fonts front_end/public",
-    "css:watch": "npm run css:copy && stylus -w front_end/assets/css/master.styl -o front_end/public/css/master.css",
-    "css:build": "npm run css:copy && stylus front_end/assets/css/master.styl -o front_end/public/css/master.css"
+    "clean": "rm -rf front_end/public && mkdir front_end/public",
+    "watch": "npm run clean && npm run copy && npm run css:watch",
+    "build": "npm run clean && npm run copy && npm run css:build",
+    "copy": "npm run js:copy && npm run css:copy",
+    "js:copy": "mkdir front_end/public/js && cp -r front_end/assets/js front_end/public",
+    "css:copy": "mkdir front_end/public/css && cp front_end/assets/css/codemirror.css front_end/public/css/codemirror.css && cp -r front_end/fonts front_end/public/fonts",
+    "css:watch": "stylus -w front_end/assets/css/master.styl -o front_end/public/css/master.css",
+    "css:build": "stylus front_end/assets/css/master.styl -o front_end/public/css/master.css"
   },
   "github": "https://github.com/mojotech/sass2stylus",
   "preferGlobal": true,
