@@ -5,9 +5,15 @@ Sass2Stylus
 [![Build Status](https://travis-ci.org/mojotech/sass2stylus.svg)](https://travis-ci.org/mojotech/sass2stylus)
 
 ### API Usage
-- `curl -F file=@/your/local/file.scss http://sass2stylus.com/api > new_file.styl`
-- `RestClient.post('http://sass2stylus.com/api', file: File.open('local_file.scss'))`
 
+#### With cURL
+```sh
+curl -F file=@/your/local/file.scss http://sass2stylus.com/api > new_file.styl
+```
+#### With Ruby
+```ruby
+RestClient.post('http://sass2stylus.com/api', file: File.open('local_file.scss'))
+```
 ---
 
 ##### Sass2Stylus is curated by loving hands at...
