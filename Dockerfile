@@ -1,4 +1,4 @@
-FROM ruby:2.0.0
+FROM ruby:2.4.9
 
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
 RUN apt-get update -qq && apt-get install -yq build-essential nodejs
