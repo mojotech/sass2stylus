@@ -7,7 +7,7 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
-    rack (1.6.11)
+    rack (1.6.13)
     rack-protection (1.5.5)
       rack
     rspec (2.14.1)
